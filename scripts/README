@@ -49,7 +49,7 @@ data/EnvironmentalRasters/WorldClim_5km/*
 data/invasionRiskData_5km_2023-05-31/model_inputs/
   ExoticNames_Clean.csv
   exotics_gabidb_list_thin.rds
-  exotics_species_hull_list.rds
+#  exotics_species_hull_list.rds  ## file is too large to be uploaded un public repos
 
 
 ## 2) run the analysis
@@ -68,8 +68,9 @@ BioclimSetsTest_HandMade.csv
 ## based on the PCA results, you may want to select few combinations of variables and test the performance of more than one nearly equivalent sets. The bioset5 was the best performing for the current analysis.
 
 data/invasionRiskData_5km_2023-05-31/model_inputs/
-#    background points for species
+    background.tar.xz ## background points for species
 ##   in github background points are stored in a different directory than the one required by the scripts 
+##   you might need to move background points (one level up), as they might end up within a directory after decompression
 
 
 ## panels in plots included in the final manuscript are created by:
