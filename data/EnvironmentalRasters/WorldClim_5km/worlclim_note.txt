@@ -1,0 +1,6 @@
+
+
+## here you should store the climatic rasters of worldclim for 2.5 arcmin.
+## we do not include these rasters as they are publicly available and too large for storage in github.
+
+
