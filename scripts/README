@@ -1,0 +1,89 @@
+
+## 
+## author:  Yazmin Zurapiti
+## title:   README
+## aim:     describe main use of scripts in the analysis
+## version: 0.1 - 2023.10.04: 
+## 
+
+##  ##  ##  
+
+## this analysis was done in the scientific computing resources [cluster] of the Research Support Division at Okinawa Institute of Science and Technology. Code may reflect it's structure and requirements.
+
+### listed computers:
+# bucket: data storing directory of the cluster
+# flash: running directory of the cluster; here you are ment to only run analysis and move your data to bucket or your local computer.
+ 
+
+### in a selected directory of each computer the following directory structure should exist before running any code.
+./data      ## contains input data for this project.
+./models    ## includes models and further outputs created by such models
+./scripts   ## all code related to this project. 
+./figures   ## anything you may want to plot to visualize data
+./results   ## "ready for publication" type of results. Pretty plots, summary tables and that sort of results.
+
+
+# main analysis is managed by two scripts: 
+010_prepareData_20230417_Climate_SpeciesOccurence.sh  ## which prepares parts of the data in the required formats and directories
+020_analysis_20230420_ENMeval_MESS.sh  ## runs the main analysis
+
+
+## 1) prepare data for analysis: 
+
+010_prepareData_20230417_Climate_SpeciesOccurence.sh
+
+# This code will run the following scripts: 
+010_prepData_clim_013_20230530_trg_Environment.R
+010_prepData_clim_013_20230530_Japan_Subregions.R
+010_prepData_ants_026_20230131_TargetRegion_SppStatusSeparation.R
+010_prepData_vars_031_20230208_BioclimSubsets_PrepData.R
+010_prepData_vars_032_20230207_BioclimSubsets_PCACorr.R
+
+# data required at this step:
+#Worldclim environmental data with masked waterbodies:
+data/EnvironmentalRasters/WorldClim_5km/* 
+     ## not included in github as files are too large and readily available from WorldClim. 
+     ## we used the 2.5 arcmin rasters, equivalent to ~5Km.
+
+#Exotic ant species data:
+data/invasionRiskData_5km_2023-05-31/model_inputs/
+  ExoticNames_Clean.csv
+  exotics_gabidb_list_thin.rds
+  exotics_species_hull_list.rds
+
+
+## 2) run the analysis
+
+020_analysis_20230420_ENMeval_MESS.sh 
+
+# This code will run the following scripts: 
+020_analysis_20230428_ENMeval-MESS.R
+020_analysis_20230620_transferabilityEvaluation.R
+trg_049_20230725_RichnessMap_Source.R
+trg_052_20230721_HirerarchichalClusterAnalysis.R
+
+# data required at this step (extra from the one above and the products of the previous scripts):
+vasionRiskData_5km_2023-05-31/BioclimaticSubsets/
+BioclimSetsTest_HandMade.csv   
+## based on the PCA results, you may want to select few combinations of variables and test the performance of more than one nearly equivalent sets. The bioset5 was the best performing for the current analysis.
+
+data/invasionRiskData_5km_2023-05-31/model_inputs/
+#    background points for species
+##   in github background points are stored in a different directory than the one required by the scripts 
+
+
+## panels in plots included in the final manuscript are created by:
+trg_053_20230707_compileResults_NumbersPlots.R
+
+
+# to be able to run in the cluster the following scripts were used:
+06_defineDirectories.R
+06_defineDirectories.sh
+08_deigo_modules.sh
+11_deigo_2023-04-21_launchRscript_SpeciesComputation.slurm
+11_deigo_2023-04-21_launchSlurm_SpeciesComputation.sh
+11_deigo_launchRscript_RegionRichnessSource.slurm
+11_deigo_launchSlurm_RegionRichnessSource.sh
+
+
+
