@@ -3,4 +3,5 @@
 ## here you should store the climatic rasters of worldclim for 2.5 arcmin.
 ## we do not include these rasters as they are publicly available and too large for storage in github.
 
+script 010_prepData_clim_013_20230530_trg_Environment.R has a few of lines on how to achieve it [lines ~ 79 - 88]
 
