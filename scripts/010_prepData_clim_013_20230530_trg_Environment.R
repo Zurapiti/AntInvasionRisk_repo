@@ -60,6 +60,7 @@ dirbd_env=file.path(dir_bucket_data, "EnvironmentalRasters")
 dirbd_env_trg=file.path(dirbd_env, trg)  ## subregions' shapes
 
 # writing directories:
+dirfd_env=file.path(dir_flash_data, "EnvironmentalRasters")
 dirfd_env_trg=file.path(dir_flash_data, "EnvironmentalRasters", trg)  ## subregions' shapes
 if(!dir.exists(dirfd_env_trg)){dir.create(dirfd_env_trg, recursive = T)}
 
@@ -75,6 +76,16 @@ ggplot(target_buffered) + theme_bw() + geom_spatvector()
 filename=paste0("bufferedSilhouette",".rds")
 saveRDS(target_buffered, file = file.path(dirfd_env_trg, filename))
 
+##########
+## a bubble to download the worldclim data if not stored already:
+## just uncomment the following two lines:
+
+# library(geodata)
+# worldclim_global("bio", "2.5", file.path(dirfd_env, "WorldClim_5km"), version="2.1")
+
+## you need to move this data to bucket and decompress the zip file
+## perhaps even move .tif files to the appropriate dir, or rewite path to files
+## before you can read it for any other script of this workflow
 ##########
 
 ## worldclim data 
